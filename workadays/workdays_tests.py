@@ -1,6 +1,7 @@
 # coding=utf-8
+
 import datetime as dt
-import workadays as wd
+from workadays import workdays as wd
 
 
 date = dt.date(2018, 2, 14)
