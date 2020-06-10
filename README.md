@@ -1,3 +1,7 @@
+## Workadays:
+#### Pacote para adicionar ou subtrair datas em dias úteis. A princípio eu escolhi focar apenas em alguns países: Brasil, Estados Unidos e Luxemburgo. No entanto, precisando de incluir novos países, estados ou regiões, será um prazer.
+
+
 ### Calendário de dias úteis:
 
 ```
