@@ -28,3 +28,18 @@ print(wd.workdays(date, 252, country='BR', state='SP', years=range(2018, 2079)))
 print(wd.is_holiday(date, country='BR', years=range(2018, 2079)))
 ```
 
+### Dias corridos
+```
+d1 = dt.date(2015, 2, 2)
+d2 = dt.date(2018, 1, 1)
+
+print(wd.days(d1, d2))      # 1064
+```
+
+### Dias corridos, base 30/360
+```
+d1 = dt.date(2015, 2, 2)
+d2 = dt.date(2018, 1, 1)
+
+print(wd.days360(d1, d2))   # 1049
+```

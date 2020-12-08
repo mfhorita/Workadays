@@ -2,17 +2,24 @@
 
 from setuptools import setup
 
+# read the contents of your README file
+from os import path
+this_directory = path.abspath(path.dirname(__file__))
+with open(path.join(this_directory, 'README.md')) as f:
+    long_description = f.read()
+
 setup(
     name='workadays',
-    version='1.1.6',
+    version='1.2.0',
     author='Marcelo Horita',
-    author_email='datazeus.tecnologia@gmail.com.br',
+    author_email='mfhorita@gmail.com.br',
     packages=['workadays'],
-    description='Calendário de dias úteis',
-    long_description='Pacote para adicionar ou subtrair datas em dias úteis. A princípio decidir focar apenas nos seguintes países: Brasil, Estados Unidos e Luxemburgo. No entanto, precisando de incluir novos países, estados ou regiões, será um prazer.',
+    description='Calendário de dias úteis, dias corridos e dias 360 (30/360)',
+    long_description=long_description,
+    long_description_content_type='text/markdown',
     url='https://github.com/mfhorita',
     license='MIT',
-    keywords='workdays workadays feriados holidays diasuteis uteis',
+    keywords='workdays workadays feriados holidays diasuteis uteis, dias360, days360, days',
     classifiers=[
         'Natural Language :: Portuguese (Brazilian)',
         'Operating System :: OS Independent',
@@ -20,8 +27,10 @@ setup(
         'Topic :: Scientific/Engineering :: Physics'
     ],
     install_requires=[
-        'python_dateutil>=2.8.0',
         'six>=1.11.0',
+        'python_dateutil>=2.8.0',
+        'pymeeus>=0.3.7',
+        'pytz>=2017.2',
         'convertdate>=2.2.0'
     ]
 
