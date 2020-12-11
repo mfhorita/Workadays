@@ -33,8 +33,7 @@ d2 = dt.date(2020, 12, 31)
 print(wd.networkdays(d1, d2))   # 750
 ```
 
-### Diferença de dias úteis entre duas datas
-### considerando apenas os finais de semana
+### Diferença de dias úteis entre duas datas considerando apenas os finais de semana
 
 ```
 d1 = dt.date(2018, 1, 7)
