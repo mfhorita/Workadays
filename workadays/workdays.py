@@ -7,7 +7,7 @@ from workadays import holidays as hl
 def get_holidays(years=None, expand=True, observed=True, country='BR', prov=None, state=None):
 
     if years is None:
-        years = [2020]
+        years = range(1900, 2100)
 
     holidays = []
     for holiday in sorted(hl.CountryHoliday(country=country, prov=prov, state=state,
@@ -21,7 +21,7 @@ def workdays(start_date=dt.datetime.today().date(), ndays=0,
              years=None, expand=True, observed=True, country='BR', prov=None, state=None):
 
     if years is None:
-        years = [2020]
+        years = range(1900, 2100)
 
     holidays = get_holidays(years=years, expand=expand, observed=observed,
                             country=country, prov=prov, state=state)
@@ -65,7 +65,7 @@ def is_holiday(date=dt.datetime.today().date(),
                years=None, expand=True, observed=True, country='BR', prov=None, state=None):
 
     if years is None:
-        years = [2020]
+        years = range(1900, 2100)
 
     holidays = get_holidays(years=years, expand=expand, observed=observed,
                             country=country, prov=prov, state=state)

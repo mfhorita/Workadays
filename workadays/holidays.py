@@ -14,7 +14,7 @@ def list_supported_countries():
 def CountryHoliday(country, years=None, prov=None, state=None, expand=True, observed=True):
 
     if years is None:
-        years = [2020]
+        years = range(1900, 2100)
 
     try:
         country_classes = inspect.getmembers(countries, inspect.isclass)
