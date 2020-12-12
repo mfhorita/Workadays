@@ -27,11 +27,8 @@ setup(
         'Topic :: Scientific/Engineering :: Physics'
     ],
     install_requires=[
-        'six>=1.11.0',
         'python_dateutil>=2.8.0',
-        'pymeeus>=0.3.7',
-        'pytz>=2017.2',
-        'convertdate>=2.2.0'
+        'six>=1.11.0'
     ]
 
 )

@@ -7,7 +7,7 @@ from workadays import holidays as hl
 def get_holidays(years=None, expand=True, observed=True, country='BR', prov=None, state=None):
 
     if years is None:
-        years = range(1900, 2100)
+        years = range(2000, 2070)
 
     holidays = []
     for holiday in sorted(hl.CountryHoliday(country=country, prov=prov, state=state,
@@ -20,14 +20,24 @@ def get_holidays(years=None, expand=True, observed=True, country='BR', prov=None
 def workdays(start_date=dt.datetime.today().date(), ndays=0,
              years=None, expand=True, observed=True, country='BR', prov=None, state=None):
 
+    if ndays == 0:
+        return start_date
+
     if years is None:
-        years = range(1900, 2100)
+        years = range(start_date.year - 20, start_date.year + 50)
 
-    holidays = get_holidays(years=years, expand=expand, observed=observed,
-                            country=country, prov=prov, state=state)
+    holidays = []
+    if country is not None:
+        holidays = get_holidays(years=years, expand=expand, observed=observed,
+                                country=country, prov=prov, state=state)
 
+    # Verifica se a data de start é um dia útil,
+    # caso contrário, busca um dia útil para iniciar
     dt_aux = start_date
-    dt_fim = start_date + dt.timedelta(ndays)
+    while dt_aux is not holidays and is_weekend(dt_aux):
+        dt_aux += dt.timedelta(-1 if ndays > 0 else 1)
+
+    dt_fim = dt_aux + dt.timedelta(ndays)
     if ndays >= 0:
         while dt_aux <= dt_fim:
 
@@ -65,11 +75,24 @@ def is_holiday(date=dt.datetime.today().date(),
                years=None, expand=True, observed=True, country='BR', prov=None, state=None):
 
     if years is None:
-        years = range(1900, 2100)
+        years = range(date.year, date.year)
 
     holidays = get_holidays(years=years, expand=expand, observed=observed,
                             country=country, prov=prov, state=state)
     return date in holidays
+
+
+def is_weekend(date=dt.datetime.today().date()):
+    return date.weekday() in (5, 6)     # Sábado ou domingo
+
+
+def is_workday(date=dt.datetime.today().date(),
+               years=None, expand=True, observed=True, country='BR', prov=None, state=None):
+
+    holidays = get_holidays(years=years, expand=expand, observed=observed,
+                            country=country, prov=prov, state=state)
+
+    return date in holidays and is_weekend(date)
 
 
 def days360(start_date=dt.date(dt.datetime.today().year, dt.datetime.today().month, dt.datetime.today().day),
@@ -116,3 +139,24 @@ def days360(start_date=dt.date(dt.datetime.today().year, dt.datetime.today().mon
 
 def days(start_date=dt.datetime.today().date(), end_date=dt.datetime.today().date()):
     return (end_date - start_date).days     # retorna dias corridos
+
+
+def networkdays(start_date=dt.datetime.today().date(), end_date=dt.datetime.today().date(),
+                years=None, expand=True, observed=True, country='BR', prov=None, state=None):
+
+    if country is None:
+        holidays = list()
+    else:
+        holidays = get_holidays(years=years, expand=expand, observed=observed,
+                                country=country, prov=prov, state=state)
+
+    # Diferença de dias corridos
+    ndc = days(start_date, end_date)
+    ndu = ndc   # Contador de dias úteis
+
+    dt_aux = start_date
+    for d in range(1, ndc):
+        dt_aux = start_date + dt.timedelta(d)
+        ndu -= 1 if is_weekend(dt_aux) or dt_aux in holidays else 0
+
+    return ndu

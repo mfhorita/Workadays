@@ -14,42 +14,47 @@ import workadays as wd
 d1 = dt.date(2018, 1, 7)
 d2 = dt.date(2020, 12, 31)
 
-print(wd.days(d1, d2))      # 1089
+print(wd.days(d1, d2))                          # 1089
 ```
 
 ### Dias corridos, base 30/360
 ```
-d1 = dt.date(2018, 1, 7)
-d2 = dt.date(2020, 12, 31)
-
-print(wd.days360(d1, d2))   # 1074
+print(wd.days360(d1, d2))                       # 1074
 ```
 
 ### Diferença de dias úteis entre duas datas
 ```
-d1 = dt.date(2018, 1, 7)
-d2 = dt.date(2020, 12, 31)
-
-print(wd.networkdays(d1, d2))   # 750
+print(wd.networkdays(d1, d2))                   # 750
 ```
 
-### Diferença de dias úteis entre duas datas considerando apenas os finais de semana
-
+### Diferença de dias úteis entre duas datas sem calendário de feriados (considera apenas os finais de semana como dia não útil)
 ```
-d1 = dt.date(2018, 1, 7)
-d2 = dt.date(2020, 12, 31)
-
-print(wd.networkdays(d1, d2, country=None))   # 779
+print(wd.networkdays(d1, d2, country=None))     # 779
 ```
 
-### Soma 252 dias úteis a data de referência utilizando o calendário Brasil
+### # Soma 252 dias úteis com calendário de feriados padrão do Brasil
 ```
-print(wd.workdays(date, 252, country='BR', years=range(2018, 2079)))
+print(wd.workdays(d1, 252))                     # 09/01/2019
 ```
 
 ### Soma 252 dias úteis a data de referência utilizando o calendário Brasil e de SP
 ```
-print(wd.workdays(date, 252, country='BR', state='SP', years=range(2018, 2079)))
+print(wd.workdays(d1, 252, country=None))       # 25/12/2018
+```
+
+### Verifica se é feriado
+```
+print('É feriado? ', wd.is_holiday(d1, country='BR', years=range(2020, 2021)))
+```
+
+### Verifica se é final de semana
+```
+print('É final de semana? ', wd.is_weekend(d1))
+```
+
+### Verifica se é dia útil
+```
+print('É dia útil? ', wd.is_workday(d1, country='BR', years=range(2020, 2021)))
 ```
 
 ### Exibe a lista de feriados
