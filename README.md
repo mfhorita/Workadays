@@ -1,5 +1,5 @@
 ## Workadays:
-#### Pacote para adicionar ou subtrair datas em dias úteis. A princípio eu escolhi focar apenas em alguns países: Brasil, Estados Unidos e Luxemburgo. No entanto, precisando de incluir novos países, estados ou regiões, será um prazer.
+#### Pacote para calcular dias úteis, dias corridos e dias na base 360. A base de feriados inicialmente implementados são: Brasil, Estados Unidos e Luxemburgo.
 
 
 ### Calendário de dias úteis:
