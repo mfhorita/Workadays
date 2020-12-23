@@ -24,7 +24,8 @@ def workdays(start_date=dt.datetime.today().date(), ndays=0,
         return start_date
 
     if years is None:
-        years = range(start_date.year - 20, start_date.year + 50)
+        years = range(start_date.year - (int(ndays / 360) + 1),
+                      start_date.year + (int(ndays / 360) + 1) + 1)
 
     holidays = []
     if country is not None:
@@ -34,7 +35,7 @@ def workdays(start_date=dt.datetime.today().date(), ndays=0,
     # Verifica se a data de start é um dia útil,
     # caso contrário, busca um dia útil para iniciar
     dt_aux = start_date
-    while dt_aux is not holidays and is_weekend(dt_aux):
+    while dt_aux in holidays or is_weekend(dt_aux):
         dt_aux += dt.timedelta(-1 if ndays > 0 else 1)
 
     dt_fim = dt_aux + dt.timedelta(ndays)
@@ -75,7 +76,7 @@ def is_holiday(date=dt.datetime.today().date(),
                years=None, expand=True, observed=True, country='BR', prov=None, state=None):
 
     if years is None:
-        years = range(date.year, date.year)
+        years = range(date.year, date.year + 1)
 
     holidays = get_holidays(years=years, expand=expand, observed=observed,
                             country=country, prov=prov, state=state)
@@ -92,7 +93,7 @@ def is_workday(date=dt.datetime.today().date(),
     holidays = get_holidays(years=years, expand=expand, observed=observed,
                             country=country, prov=prov, state=state)
 
-    return date in holidays and is_weekend(date)
+    return not (date in holidays or is_weekend(date))
 
 
 def days360(start_date=dt.date(dt.datetime.today().year, dt.datetime.today().month, dt.datetime.today().day),
@@ -147,6 +148,8 @@ def networkdays(start_date=dt.datetime.today().date(), end_date=dt.datetime.toda
     if country is None:
         holidays = list()
     else:
+        if years is not None:
+            years = range(start_date.year, end_date.year + 1)
         holidays = get_holidays(years=years, expand=expand, observed=observed,
                                 country=country, prov=prov, state=state)
 

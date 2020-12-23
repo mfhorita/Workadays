@@ -3,37 +3,43 @@
 import datetime as dt
 from workadays import workdays as wd
 
-date = dt.date(2020, 12, 10)
+date = dt.date(2020, 12, 23)
 dt_zero = wd.workdays(date, 0)
 dt_proxdu = wd.workdays(date, 1)
 dt_duant = wd.workdays(date, -1)
 print(date, dt_zero, dt_proxdu, dt_duant)
 
-date = dt.date(2020, 12, 11)
+date = dt.date(2020, 12, 24)
 dt_zero = wd.workdays(date, 0)
 dt_proxdu = wd.workdays(date, 1)
 dt_duant = wd.workdays(date, -1)
 print(date, dt_zero, dt_proxdu, dt_duant)
 
-date = dt.date(2020, 12, 12)
+date = dt.date(2020, 12, 25)
 dt_zero = wd.workdays(date, 0)
 dt_proxdu = wd.workdays(date, 1)
 dt_duant = wd.workdays(date, -1)
 print(date, dt_zero, dt_proxdu, dt_duant)
 
-date = dt.date(2020, 12, 13)
+date = dt.date(2020, 12, 26)
 dt_zero = wd.workdays(date, 0)
 dt_proxdu = wd.workdays(date, 1)
 dt_duant = wd.workdays(date, -1)
 print(date, dt_zero, dt_proxdu, dt_duant)
 
-date = dt.date(2020, 12, 14)
+date = dt.date(2020, 12, 27)
 dt_zero = wd.workdays(date, 0)
 dt_proxdu = wd.workdays(date, 1)
 dt_duant = wd.workdays(date, -1)
 print(date, dt_zero, dt_proxdu, dt_duant)
 
-date = dt.date(2020, 12, 15)
+date = dt.date(2020, 12, 28)
+dt_zero = wd.workdays(date, 0)
+dt_proxdu = wd.workdays(date, 1)
+dt_duant = wd.workdays(date, -1)
+print(date, dt_zero, dt_proxdu, dt_duant)
+
+date = dt.date(2020, 12, 29)
 dt_zero = wd.workdays(date, 0)
 dt_proxdu = wd.workdays(date, 1)
 dt_duant = wd.workdays(date, -1)
@@ -70,6 +76,7 @@ print(wd.workdays(d1, 252, country='BR', years=range(2018, 2079)))
 print(wd.workdays(d1, 252, country='BR', state='SP', years=range(2020, 2021)))
 
 # Verifica se é feriado
+d1 = dt.date(2020, 12, 24)
 print('É feriado? ', wd.is_holiday(d1, country='BR', years=range(2020, 2021)))
 
 # Verifica se é final de semana
