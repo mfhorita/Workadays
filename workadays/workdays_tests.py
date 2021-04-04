@@ -3,6 +3,7 @@
 import datetime as dt
 from workadays import workdays as wd
 
+
 date = dt.date(2020, 12, 23)
 dt_zero = wd.workdays(date, 0)
 dt_proxdu = wd.workdays(date, 1)
