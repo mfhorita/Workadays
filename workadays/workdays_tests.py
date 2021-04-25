@@ -4,6 +4,14 @@ import datetime as dt
 from workadays import workdays as wd
 
 
+date = dt.date(2021, 4, 6)
+data_usa = wd.workdays(date, -2, country='US')
+print(data_usa)
+
+date = dt.date(2021, 4, 2)
+data_atual = dt.datetime.today().date()
+ndu = wd.networkdays(date, data_atual, country='US')
+
 date = dt.date(2020, 12, 23)
 dt_zero = wd.workdays(date, 0)
 dt_proxdu = wd.workdays(date, 1)
