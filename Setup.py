@@ -18,14 +18,16 @@ setup(
     long_description=long_description,
     long_description_content_type='text/markdown',
     url='https://github.com/mfhorita',
-    license='MIT',
+    license='MIT License',
     keywords='workdays workadays feriados holidays diasuteis uteis, dias360, days360, days',
     classifiers=[
-        'Natural Language :: Portuguese (Brazilian)',
+        'License :: Freeware',
+        'Programming Language :: Python',
         'Operating System :: OS Independent',
-        'Topic :: Software Development :: Internationalization',
-        'Topic :: Scientific/Engineering :: Physics'
-    ],
+        'Development Status :: 5 - Production/Stable',
+        'Natural Language :: Portuguese (Brazilian)',
+        'Intended Audience :: Developers',
+        'Topic :: Utilities'],
     install_requires=[
         'python_dateutil>=2.8.0',
         'six>=1.11.0'
