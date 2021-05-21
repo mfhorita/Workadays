@@ -6,7 +6,7 @@
 
 ```
 import datetime as dt
-import workadays as wd
+from workadays import workadays as wd
 ```
 
 ### Dias corridos
