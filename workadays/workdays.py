@@ -24,8 +24,8 @@ def workdays(start_date=dt.datetime.today().date(), ndays=0,
         return start_date
 
     if years is None:
-        years = range(start_date.year - (int(ndays / 360) + 1),
-                      start_date.year + (int(ndays / 360) + 1) + 1)
+        years = range(start_date.year - (abs(int(ndays / 360)) + 1),
+                      start_date.year + (abs(int(ndays / 360) + 1)) + 1)
 
     holidays = []
     if country is not None:
