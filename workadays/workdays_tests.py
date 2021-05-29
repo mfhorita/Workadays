@@ -1,100 +1,136 @@
 # coding=utf-8
 
+import os
 import datetime as dt
 from workadays import workdays as wd
 
 
-date = dt.date(2021, 4, 6)
-data_usa = wd.workdays(date, -2, country='US')
-print(data_usa)
-
-date = dt.date(2021, 4, 2)
-data_atual = dt.datetime.today().date()
-ndu = wd.networkdays(date, data_atual, country='US')
-
-date = dt.date(2020, 12, 23)
-dt_zero = wd.workdays(date, 0)
-dt_proxdu = wd.workdays(date, 1)
-dt_duant = wd.workdays(date, -1)
-print(date, dt_zero, dt_proxdu, dt_duant)
-
-date = dt.date(2020, 12, 24)
-dt_zero = wd.workdays(date, 0)
-dt_proxdu = wd.workdays(date, 1)
-dt_duant = wd.workdays(date, -1)
-print(date, dt_zero, dt_proxdu, dt_duant)
-
+# Dias corridos
+print('---------------------------------------------------------------------------------------------------')
+print('Data: 2020-12-25, Parâmetro D0: 2020-12-25, Parâmetro D+1: 2020-12-28, Parâmetro D-1: 2020-12-24')
+print('---------------------------------------------------------------------------------------------------')
 date = dt.date(2020, 12, 25)
 dt_zero = wd.workdays(date, 0)
 dt_proxdu = wd.workdays(date, 1)
 dt_duant = wd.workdays(date, -1)
-print(date, dt_zero, dt_proxdu, dt_duant)
-
-date = dt.date(2020, 12, 26)
-dt_zero = wd.workdays(date, 0)
-dt_proxdu = wd.workdays(date, 1)
-dt_duant = wd.workdays(date, -1)
-print(date, dt_zero, dt_proxdu, dt_duant)
-
-date = dt.date(2020, 12, 27)
-dt_zero = wd.workdays(date, 0)
-dt_proxdu = wd.workdays(date, 1)
-dt_duant = wd.workdays(date, -1)
-print(date, dt_zero, dt_proxdu, dt_duant)
-
-date = dt.date(2020, 12, 28)
-dt_zero = wd.workdays(date, 0)
-dt_proxdu = wd.workdays(date, 1)
-dt_duant = wd.workdays(date, -1)
-print(date, dt_zero, dt_proxdu, dt_duant)
-
-date = dt.date(2020, 12, 29)
-dt_zero = wd.workdays(date, 0)
-dt_proxdu = wd.workdays(date, 1)
-dt_duant = wd.workdays(date, -1)
-print(date, dt_zero, dt_proxdu, dt_duant)
+try:
+    assert dt_zero == dt.date(2020, 12, 25)
+    assert dt_proxdu == dt.date(2020, 12, 28)
+    assert dt_duant == dt.date(2020, 12, 24)
+    print('Testes da função de dias úteis.. OK!')
+except AssertionError as ex:
+    print('Testes da função de dias úteis.. ERRO..')
+    print('..Resultado esperado', date, dt_zero, dt_proxdu, dt_duant, ex)
+    print('..Resultado esperado', '2020-12-25 2020-12-25 2020-12-28 2020-12-24', ex)
 print('')
 
 d1 = dt.date(2018, 1, 7)
 d2 = dt.date(2020, 12, 31)
 
 # Dias corridos
-print(wd.days(d1, d2))                          # 1089
+resp = wd.days(d1, d2)
+try:
+    assert resp == 1089
+    print('Teste dias corridos.. OK!')
+except AssertionError as ex:
+    print('Teste dias corridos.. ERRO:..')
+    print('..Resultado {0}. O resultado esperado era 1089!'.format(resp), ex)
 
 # Dias corridos, base 30/360
-print(wd.days360(d1, d2))                       # 1074
+resp = wd.days360(d1, d2)
+try:
+    assert resp == 1074
+    print('Teste dias corridos, base 30/360.. OK!')
+except AssertionError as ex:
+    print('Teste dias corridos, base 30/360.. ERRO:..')
+    print('..Resultado {0}. O resultado esperado era 1074!'.format(resp), ex)
 
 # Diferença de dias úteis entre duas datas
-print(wd.networkdays(d1, d2))                   # 750
+resp = wd.networkdays(d1, d2)
+try:
+    assert resp == 750
+    print('Teste diferença de dias úteis com calendário brasileiro.. OK!')
+except AssertionError as ex:
+    print('Teste diferença de dias úteis com calendário brasileiro.. ERRO:..')
+    print('..Resultado {0}. O resultado esperado era 750!'.format(resp), ex)
 
 # Diferença de dias úteis entre duas datas sem calendário de feriados
 # (considera apenas os finais de semana como dia não útil)
-print(wd.networkdays(d1, d2, country=None))     # 779
+resp = wd.networkdays(d1, d2, country=None)
+try:
+    assert resp == 779
+    print('Teste diferença de dias úteis sem calendário nenhum.. OK!')
+except AssertionError as ex:
+    print('Teste diferença de dias úteis sem calendário nenhum.. ERRO:..')
+    print('..Resultado {0}. O resultado esperado era 779!'.format(resp), ex)
 
 # Soma 252 dias úteis com calendário de feriados padrão do Brasil
-print(wd.workdays(d1, 252))                     # 09/01/2019
+resp = wd.workdays(d1, 252)
+date = dt.date(2019, 1, 9)
+try:
+    assert resp == date
+    print('Teste de soma de dias úteis com calendário brasileiro.. OK!')
+except AssertionError as ex:
+    print('Teste de soma de dias úteis com calendário brasileiro.. ERRO:..')
+    print('..Resultado {0}. O resultado esperado era {1}!'.format(resp, date), ex)
 
 # Soma 252 dias úteis sem calendário de feriados do Brasil
 # (considera apenas os finais de semana como dia não útil)
-print(wd.workdays(d1, 252, country=None))       # 25/12/2018
-
-# Soma 252 dias úteis a data de referência utilizando o calendário Brasil
-print(wd.workdays(d1, 252, country='BR', years=range(2018, 2079)))
-
-# Soma 252 dias úteis a data de referência utilizando o calendário Brasil e de SP
-print(wd.workdays(d1, 252, country='BR', state='SP', years=range(2020, 2021)))
+resp = wd.workdays(d1, 252, country=None)
+date = dt.date(2018, 12, 25)
+try:
+    assert resp == date
+    print('Teste de soma de dias úteis sem calendário nenhum.. OK!')
+except AssertionError as ex:
+    print('Teste de soma de dias úteis sem calendário nenhum.. ERRO:..')
+    print('..Resultado {0}. O resultado esperado era {1}!'.format(resp, date), ex)
 
 # Verifica se é feriado
-d1 = dt.date(2020, 12, 24)
-print('É feriado? ', wd.is_holiday(d1, country='BR', years=range(2020, 2021)))
+date = dt.date(2020, 12, 24)
+resp = wd.is_holiday(date, country='BR')
+try:
+    assert resp is False
+    print('Teste para verificar se 24/12/2020 é feriado.. OK!')
+except AssertionError as ex:
+    print('Teste para verificar se 24/12/2020 é feriado.. ERRO:..')
+    print('..Resultado {0}. {1} não é feriado!'.format(resp, date), ex)
 
 # Verifica se é final de semana
-print('É final de semana? ', wd.is_weekend(d1))
+date = dt.date(2020, 12, 26)
+resp = wd.is_weekend(date)
+try:
+    assert resp is True
+    print('Teste para verificar se 26/12/2020 é fim de semana.. OK!')
+except AssertionError as ex:
+    print('Teste para verificar se 26/12/2020 é fim de semana.. ERRO:..')
+    print('..Resultado {0}. {1} é final de semana!'.format(resp, date), ex)
 
 # Verifica se é dia útil
-print('É dia útil? ', wd.is_workday(d1, country='BR', years=range(2020, 2021)))
-print('')
+date = dt.date(2020, 12, 24)
+resp = wd.is_workday(date, country='BR')
+try:
+    assert resp is True
+    print('Teste para verificar se 24/12/2020 é dia útil.. OK!')
+except AssertionError as ex:
+    print('Teste para verificar se 24/12/2020 é dia útil.. ERRO:..')
+    print('ERRO: Resultado {0}. {1} é dia útil!'.format(resp, date), ex)
 
-# Busca lista de feriados referente ao calendário Brasil e de SP combinados
-for date in wd.get_holidays(country='BR', state='SP', years=range(2018, 2019)):
-    print(date)
+# Verifica se é ano bissexto
+ano = 2010
+resp = wd.is_leap_year(ano)
+try:
+    assert resp is False
+    print('Teste para verificar se 2010 é ano bissexto.. OK!')
+except AssertionError as ex:
+    print('Teste para verificar se 2010 é ano bissexto.. ERRO:..')
+    print('ERRO: Resultado {0}. {1} não é ano bissexto!'.format(resp, ano), ex)
+
+print('')
+print('---------------------------------------------------------------------------------------------------')
+print(' LISTA DE FERIADOS NACIONAIS BRASILEIROS E MUNICIPAIS DE SÃO PAULO - ENTRE 2020 e 2022')
+print('---------------------------------------------------------------------------------------------------')
+print(wd.get_holidays(country='BR', state='SP', years=range(2020, 2023)))
+# for date in wd.get_holidays(country='BR', state='SP', years=range(2020, 2023)):
+#    print(date)
+
+os.system("pause")

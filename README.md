@@ -57,6 +57,11 @@ print('É final de semana? ', wd.is_weekend(d1))
 print('É dia útil? ', wd.is_workday(d1, country='BR', years=range(2020, 2021)))
 ```
 
+### Verifica se é ano bissexto
+```
+print('É ano bissexto? ', wd.is_leap_year(2008)
+```
+
 ### Exibe a lista de feriados
 ```
 for date in wd.get_holidays(country='BR', state='SP', years=range(2020, 2021)):

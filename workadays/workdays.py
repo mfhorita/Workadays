@@ -163,3 +163,18 @@ def networkdays(start_date=dt.datetime.today().date(), end_date=dt.datetime.toda
         ndu -= 1 if is_weekend(dt_aux) or dt_aux in holidays else 0
 
     return ndu
+
+
+# É ano bissexto
+def is_leap_year(year):
+    rest = year % 4
+    rest100 = year % 100
+    rest400 = year % 400
+
+    if not rest:
+        if not rest400:
+            return True
+        elif rest100:
+            return True
+
+    return False
