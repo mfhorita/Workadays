@@ -14,7 +14,7 @@
 from datetime import date
 
 from dateutil.easter import easter
-from dateutil.relativedelta import relativedelta as rd, MO
+from dateutil.relativedelta import relativedelta as rd, MO, FR
 
 from workadays.constants import JAN, MAY, JUN, AUG, NOV, DEC
 from workadays.holiday_base import HolidayBase
@@ -31,6 +31,7 @@ class Luxembourg(HolidayBase):
     def _populate(self, year):
         # Public holidays
         self[date(year, JAN, 1)] = "Neijoerschdag"
+        self[easter(year) - rd(days=2)] = "Good Friday"
         self[easter(year) + rd(weekday=MO)] = "Ouschterméindeg"
         self[date(year, MAY, 1)] = "Dag vun der Aarbecht"
         if year >= 2019:

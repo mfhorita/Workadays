@@ -1,6 +1,5 @@
 ## Workadays:
-#### Pacote para calcular dias úteis, dias corridos e dias na base 360. A base de feriados inicialmente implementados são: Brasil, Estados Unidos e Luxemburgo.
-
+#### Pacote para calcular dias úteis, dias corridos e dias na base 360 (30/360). Há calendários de feriados do Brasil, Estados Unidos, Luxemburgo e Reino Unido (UK, GB, GBR, England, Wales, Scotland, IsleOfMan, NorthernIreland). Com o calendário de feriados da Inglaterra é possível listar os dias que não há divulgação das Libor's (EUR, USD, CHF, GBP e JPY).
 
 ### Calendário de dias úteis:
 
@@ -59,7 +58,7 @@ print('É dia útil? ', wd.is_workday(d1, country='BR', years=range(2020, 2021)))
 
 ### Verifica se é ano bissexto
 ```
-print('É ano bissexto? ', wd.is_leap_year(2008)
+print('É ano bissexto? ', wd.is_leap_year(2008))
 ```
 
 ### Exibe a lista de feriados
