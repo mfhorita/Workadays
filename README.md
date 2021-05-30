@@ -61,8 +61,14 @@ print('É dia útil? ', wd.is_workday(d1, country='BR', years=range(2020, 2021)))
 print('É ano bissexto? ', wd.is_leap_year(2008))
 ```
 
-### Exibe a lista de feriados
+### Exibe a lista de feriados do Brasil e de São Paulo
 ```
-for date in wd.get_holidays(country='BR', state='SP', years=range(2020, 2021)):
+for date in wd.get_holidays(country='BR', state='SP', years=range(2020, 2022)):
+    print(date)
+```
+
+### Exibe a lista de feriados da Inglaterra e das Libor's
+```
+for date in wd.get_holidays(country='England', years=range(2019, 2023)):
     print(date)
 ```
