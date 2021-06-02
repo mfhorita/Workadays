@@ -6,6 +6,7 @@ from workadays import workdays as wd
 
 
 def exec_tests():
+
     # Dias corridos
     print('---------------------------------------------------------------------------------------------------')
     print('Data: 2020-12-25, Parâmetro D0: 2020-12-25, Parâmetro D+1: 2020-12-28, Parâmetro D-1: 2020-12-24')
