@@ -114,7 +114,7 @@ def days360(start_date=dt.date(dt.datetime.today().year, dt.datetime.today().mon
             start_month == 2 and (
                 start_day == 29 or (
                     start_day == 28 and
-                    start_date.is_leap_year is False
+                    is_leap_year(start_date.year) is False
                 )
             )
         )
@@ -157,7 +157,6 @@ def networkdays(start_date=dt.datetime.today().date(), end_date=dt.datetime.toda
     ndc = days(start_date, end_date)
     ndu = ndc   # Contador de dias úteis
 
-    dt_aux = start_date
     for d in range(1, ndc):
         dt_aux = start_date + dt.timedelta(d)
         ndu -= 1 if is_weekend(dt_aux) or dt_aux in holidays else 0

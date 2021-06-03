@@ -10,14 +10,14 @@ with open(path.join(this_directory, 'README.md')) as f:
 
 setup(
     name='workadays',
-    version='2021.05.30',
+    version='2021.06.03',
     author='Marcelo Horita',
     author_email='mfhorita@gmail.com.br',
     packages=['workadays'],
     description="Calendário de dias úteis, dias corridos e dias 360 (30/360). "
                 "Há calendários de feriados do Brasil, Estados Unidos, Luxemburgo e Reino Unido. "
                 "Reino Unido (UK, GB, GBR, England, Wales, Scotland, IsleOfMan, NorthernIreland). "
-                "É possível listar os dias que não há divulgação das Libor's (EUR, USD, CHF, GBP e JPY).",
+                "Utilize o calendário England para as Libor's (EUR, USD, CHF, GBP e JPY).",
     long_description=long_description,
     long_description_content_type='text/markdown',
     url='https://github.com/mfhorita',
