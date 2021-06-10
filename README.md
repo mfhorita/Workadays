@@ -1,11 +1,13 @@
 ## Workadays:
-#### Pacote para calcular dias úteis, dias corridos e dias na base 360 (30/360). Há calendários de feriados do Brasil, Estados Unidos, Luxemburgo e Reino Unido (UK, GB, GBR, England, Wales, Scotland, IsleOfMan, NorthernIreland). Com o calendário de feriados da Inglaterra é possível listar os dias que não há divulgação das Libor's (EUR, USD, CHF, GBP e JPY).
+#### <h3>Pacote para calcular dias úteis, dias corridos e dias na base 360 (30/360).</h3>
+Há calendários de feriados do Brasil, Estados Unidos, Luxemburgo e Reino Unido. <p>
+Com o calendário de feriados da Inglaterra, por exemplo, é possível listar os dias que não há divulgação das Libor's (EUR, USD, CHF, GBP e JPY).
 
 ### Calendário de dias úteis:
 
 ```
 import datetime as dt
-from workadays import workadays as wd
+from workadays import workdays as wd
 ```
 
 ### Dias corridos
