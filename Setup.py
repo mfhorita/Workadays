@@ -14,10 +14,7 @@ setup(
     author='Marcelo Horita',
     author_email='mfhorita@gmail.com.br',
     packages=['workadays'],
-    description="Calendário de dias úteis, dias corridos e dias 360 (30/360). "
-                "Há calendários de feriados do Brasil, Estados Unidos, Luxemburgo e Reino Unido. "
-                "Reino Unido (UK, GB, GBR, England, Wales, Scotland, IsleOfMan, NorthernIreland). "
-                "Utilize o calendário England para as Libor's (EUR, USD, CHF, GBP e JPY).",
+    description="Calendário de dias úteis, dias corridos e dias 360 (30/360).",
     long_description=long_description,
     long_description_content_type='text/markdown',
     url='https://github.com/mfhorita',
