@@ -39,14 +39,23 @@ def exec_tests():
         print('Teste dias corridos.. ERRO:..')
         print('..Resultado {0}. O resultado esperado era 1089!'.format(resp), ex)
 
-    # Dias corridos, base 30/360
-    resp = wd.days360(d1, d2)
+    # Dias corridos, base 30U/360 (método americano)
+    resp = wd.days360(d1, d2, method_eu=False)
     try:
         assert resp == 1074
-        print('Teste dias corridos, base 30/360.. OK!')
+        print('Teste dias corridos, base 30U/360.. OK!')
     except AssertionError as ex:
-        print('Teste dias corridos, base 30/360.. ERRO:..')
+        print('Teste dias corridos, base 30U/360.. ERRO:..')
         print('..Resultado {0}. O resultado esperado era 1074!'.format(resp), ex)
+
+    # Dias corridos, base 30E/360 (método europeu)
+    resp = wd.days360(d1, d2, method_eu=True)
+    try:
+        assert resp == 1073
+        print('Teste dias corridos, base 30E/360.. OK!')
+    except AssertionError as ex:
+        print('Teste dias corridos, base 30E/360.. ERRO:..')
+        print('..Resultado {0}. O resultado esperado era 1073!'.format(resp), ex)
 
     # Diferença de dias úteis entre duas datas
     resp = wd.networkdays(d1, d2)
