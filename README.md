@@ -1,7 +1,10 @@
 ## Workadays:
 #### <h3>Pacote para calcular dias úteis, dias corridos e dias na base 360 (30/360).</h3>
 Há calendários de feriados do Brasil, Estados Unidos, Luxemburgo e Reino Unido. <p>
-Com o calendário de feriados da Inglaterra, por exemplo, é possível listar os dias que não há divulgação das Libor's (EUR, USD, CHF, GBP e JPY).
+Na versão 2022.08.08 foi feita a inclusão do novo feriado dos EUA, Juneteenth. Consulte: https://pt.wikipedia.org/wiki/Juneteenth <p>
+A versão 2022.08.08 foi compilada no Python 3.9.13.<p>
+
+
 
 ### Calendário de dias úteis:
 

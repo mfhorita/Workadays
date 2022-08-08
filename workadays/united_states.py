@@ -536,6 +536,19 @@ class UnitedStates(HolidayBase):
                     and date(year, DEC, 31).weekday() == SAT:
                 self[date(year, DEC, 30)] = name + " (Observed)"
 
+        # Juneteenth (Black Independence Day)
+        if year >= 2021:
+            name = "Juneteenth"
+            self[date(year, JUN, 19)] = "Juneteenth"
+            if self.observed \
+                    and date(year, JUN, 19).weekday() == SAT:
+                self[date(year, JUN, 19) + rd(days=-1)] = name + \
+                    " (Observed)"
+            elif self.observed \
+                    and date(year, JUN, 19).weekday() == SUN:
+                self[date(year, JUN, 19) + rd(days=+1)] = name + \
+                    " (Observed)"
+
 
 class US(UnitedStates):
     pass

@@ -162,9 +162,9 @@ def exec_tests():
 
     print('')
     print('---------------------------------------------------------------------------------------------------')
-    print(' LISTA DE FERIADOS DE ESTADOS UNIDOS - ENTRE 2020 e 2021')
+    print(' LISTA DE FERIADOS DE ESTADOS UNIDOS - ENTRE 2020 e 2025')
     print('---------------------------------------------------------------------------------------------------')
-    for date in wd.get_holidays(country='US', years=range(2020, 2022)):
+    for date in wd.get_holidays(country='US', years=range(2020, 2026)):
         print(date)
 
     os.system("pause")
