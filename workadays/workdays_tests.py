@@ -7,6 +7,9 @@ from workadays import workdays as wd
 
 def exec_tests():
 
+    for date in wd.get_holidays(country='England', years=range(2000, 2100)):
+        print(date)
+
     # Dias corridos
     print('---------------------------------------------------------------------------------------------------')
     print('Data: 2020-12-25, Parâmetro D0: 2020-12-25, Parâmetro D+1: 2020-12-28, Parâmetro D-1: 2020-12-24')
