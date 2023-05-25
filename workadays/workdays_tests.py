@@ -6,6 +6,16 @@ from workadays import workdays as wd
 
 
 def exec_tests():
+    dt_ini = dt.date(2020, 12, 25)
+    dt_fim = dt.date(2026, 12, 25)
+    print(wd.networkdays(dt_ini, dt_fim))
+
+    dt_ini = dt.date(2023, 5, 22)
+    print(wd.workdays(dt_ini, 2520))
+
+    dt_ini = dt.date(2023, 5, 22)
+    data_hora = dt.datetime.combine(dt_ini, dt.time())
+    print(wd.workdays(data_hora, 2520))
 
     for date in wd.get_holidays(country='England', years=range(2000, 2100)):
         print(date)

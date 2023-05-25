@@ -7,7 +7,7 @@ from workadays import holidays as hl
 def get_holidays(years=None, expand=True, observed=True, country='BR', prov=None, state=None):
 
     if years is None:
-        years = range(2000, 2070)
+        years = range(2000, 2100)
 
     holidays = []
     for holiday in sorted(hl.CountryHoliday(country=country, prov=prov, state=state,
@@ -23,9 +23,12 @@ def workdays(start_date=dt.datetime.today().date(), ndays=0,
     if ndays == 0:
         return start_date
 
+    if isinstance(start_date, dt.datetime):
+        start_date = start_date.date()
+
     if years is None:
-        years = range(start_date.year - (abs(int(ndays / 360)) + 1),
-                      start_date.year + (abs(int(ndays / 360) + 1)) + 1)
+        years = range(start_date.year - (abs(int(ndays / 360)) + 3),
+                      start_date.year + (abs(int(ndays / 360) + 1 + 3)))
 
     holidays = []
     if country is not None:
@@ -76,7 +79,7 @@ def is_holiday(date=dt.datetime.today().date(),
                years=None, expand=True, observed=True, country='BR', prov=None, state=None):
 
     if years is None:
-        years = range(date.year, date.year + 1)
+        years = range(date.year, date.year + 3)
 
     holidays = get_holidays(years=years, expand=expand, observed=observed,
                             country=country, prov=prov, state=state)
@@ -90,6 +93,9 @@ def is_weekend(date=dt.datetime.today().date()):
 def is_workday(date=dt.datetime.today().date(),
                years=None, expand=True, observed=True, country='BR', prov=None, state=None):
 
+    if isinstance(date, dt.datetime):
+        date = date.date()
+
     holidays = get_holidays(years=years, expand=expand, observed=observed,
                             country=country, prov=prov, state=state)
 
@@ -99,6 +105,12 @@ def is_workday(date=dt.datetime.today().date(),
 def days360(start_date=dt.date(dt.datetime.today().year, dt.datetime.today().month, dt.datetime.today().day),
             end_date=dt.date(dt.datetime.today().year, dt.datetime.today().month, dt.datetime.today().day),
             method_eu=False):
+
+    if isinstance(start_date, dt.datetime):
+        start_date = start_date.date()
+
+    if isinstance(end_date, dt.datetime):
+        end_date = end_date.date()
 
     start_day = start_date.day
     start_month = start_date.month
@@ -139,17 +151,33 @@ def days360(start_date=dt.date(dt.datetime.today().year, dt.datetime.today().mon
 
 
 def days(start_date=dt.datetime.today().date(), end_date=dt.datetime.today().date()):
+    if isinstance(start_date, dt.datetime):
+        start_date = start_date.date()
+    if isinstance(end_date, dt.datetime):
+        end_date = end_date.date()
     return (end_date - start_date).days     # retorna dias corridos
 
 
 def networkdays(start_date=dt.datetime.today().date(), end_date=dt.datetime.today().date(),
                 years=None, expand=True, observed=True, country='BR', prov=None, state=None):
 
+    if isinstance(start_date, dt.datetime):
+        start_date = start_date.date()
+    if isinstance(end_date, dt.datetime):
+        end_date = end_date.date()
+
+    inverte_sinal = False
+    if end_date < start_date:
+        dt_aux = start_date
+        start_date = end_date
+        end_date = dt_aux
+        inverte_sinal = True
+
     if country is None:
         holidays = list()
     else:
         if years is not None:
-            years = range(start_date.year, end_date.year + 1)
+            years = range(start_date.year, end_date.year + 3)
         holidays = get_holidays(years=years, expand=expand, observed=observed,
                                 country=country, prov=prov, state=state)
 
@@ -161,7 +189,7 @@ def networkdays(start_date=dt.datetime.today().date(), end_date=dt.datetime.toda
         dt_aux = start_date + dt.timedelta(d)
         ndu -= 1 if is_weekend(dt_aux) or dt_aux in holidays else 0
 
-    return ndu
+    return ndu * (-1 if inverte_sinal else 1)
 
 
 # É ano bissexto
