@@ -185,7 +185,7 @@ def networkdays(start_date=dt.datetime.today().date(), end_date=dt.datetime.toda
     ndc = days(start_date, end_date)
     ndu = ndc   # Contador de dias úteis
 
-    for d in range(1, ndc):
+    for d in range(0, ndc+1):
         dt_aux = start_date + dt.timedelta(d)
         ndu -= 1 if is_weekend(dt_aux) or dt_aux in holidays else 0
 

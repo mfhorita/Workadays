@@ -6,8 +6,14 @@ from workadays import workdays as wd
 
 
 def exec_tests():
-    dt_ini = dt.date(2020, 12, 25)
-    dt_fim = dt.date(2026, 12, 25)
+    dt_fim = dt.date(2060, 12, 31)
+    dt_ini = dt.date(2020, 1, 1)
+    for dia in range(0, 14976):
+        dt_ref = dt_ini + dt.timedelta(dia)
+        print(dt_ref, wd.networkdays(dt_ref, dt_fim))
+
+    dt_ini = dt.date(2021, 4, 11)
+    dt_fim = dt.date(2021, 4, 30)
     print(wd.networkdays(dt_ini, dt_fim))
 
     dt_ini = dt.date(2023, 5, 22)
