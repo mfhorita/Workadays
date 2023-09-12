@@ -6,6 +6,9 @@ from workadays import workdays as wd
 
 
 def exec_tests():
+    for date in wd.get_holidays(country='Argentina', years=range(2021, 2100)):
+        print(date)
+
     dt_fim = dt.date(2060, 12, 31)
     dt_ini = dt.date(2020, 1, 1)
     for dia in range(0, 14976):
@@ -22,9 +25,6 @@ def exec_tests():
     dt_ini = dt.date(2023, 5, 22)
     data_hora = dt.datetime.combine(dt_ini, dt.time())
     print(wd.workdays(data_hora, 2520))
-
-    for date in wd.get_holidays(country='England', years=range(2000, 2100)):
-        print(date)
 
     # Dias corridos
     print('---------------------------------------------------------------------------------------------------')
