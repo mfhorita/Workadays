@@ -6,7 +6,7 @@ from workadays import workdays as wd
 
 
 def exec_tests():
-    for date in wd.get_holidays(country='Argentina', years=range(2021, 2100)):
+    for date in wd.get_holidays(country='Argentina', years=range(2019, 2100)):
         print(date)
 
     dt_fim = dt.date(2060, 12, 31)

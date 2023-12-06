@@ -23,6 +23,8 @@ class Argentina(HolidayBase):
         self[date(year, JAN, 1)] = "Año Nuevo"
         if self.observed and date(year, JAN, 1).weekday() == SUN:
             self[date(year, JAN, 1) + rd(days=+1)] = "Año Nuevo (Observed)"
+        elif self.observed and date(year, JAN, 1).weekday() == SAT:
+            self[date(year, JAN, 1) + rd(days=-1)] = "Año Nuevo (Observed)"
 
         # Carnaval
         quaresma = easter(year) - rd(days=46)  # self[quaresma] = "Quarta-feira de cinzas (Início da Quaresma)"
@@ -64,6 +66,10 @@ class Argentina(HolidayBase):
 
         # Christmas Day
         self[date(year, DEC, 25)] = "Natal"
+        if self.observed and date(year, DEC, 1).weekday() == SUN:
+            self[date(year, DEC, 25) + rd(days=+1)] = "Natal (Observed)"
+        elif self.observed and date(year, DEC, 1).weekday() == SAT:
+            self[date(year, DEC, 25) + rd(days=-1)] = "Natal (Observed)"
 
 
 class AR(Argentina):
