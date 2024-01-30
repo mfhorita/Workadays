@@ -49,6 +49,9 @@ class Brazil(HolidayBase):
 
         self[date(year, NOV, 15)] = "Proclamação da República"
 
+        if year > 2023:
+            self[date(year, NOV, 20)] = "Conciência Negra"
+
         # Christmas Day
         self[date(year, DEC, 25)] = "Natal"
 
@@ -68,8 +71,7 @@ class Brazil(HolidayBase):
             self[date(year, JAN, 23)] = "Dia do evangélico"
             self[date(year, JUN, 15)] = "Aniversário do Acre"
             self[date(year, SEP, 5)] = "Dia da Amazônia"
-            self[date(year, NOV, 17)] = "Assinatura do Tratado de" \
-                                        " Petrópolis"
+            self[date(year, NOV, 17)] = "Assinatura do Tratado de Petrópolis"
 
         if self.state == 'AL':
             self[date(year, JUN, 24)] = "São João"

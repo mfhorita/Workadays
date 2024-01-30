@@ -10,7 +10,7 @@ with open(path.join(this_directory, 'README.md')) as f:
 
 setup(
     name='workadays',
-    version='2023.07.20',
+    version='2023.12.30',
     author='Marcelo Horita',
     author_email='mfhorita@gmail.com.br',
     packages=['workadays'],
@@ -32,5 +32,4 @@ setup(
         'python_dateutil>=2.8.0',
         'six>=1.11.0'
     ]
-
 )

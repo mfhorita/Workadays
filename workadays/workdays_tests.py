@@ -1,12 +1,13 @@
 # coding=utf-8
 
 import os
+
 import datetime as dt
 from workadays import workdays as wd
 
 
 def exec_tests():
-    for date in wd.get_holidays(country='Argentina', years=range(2019, 2100)):
+    for date in wd.get_holidays(country='Brazil', years=range(2020, 2025), observed=True):
         print(date)
 
     dt_fim = dt.date(2060, 12, 31)

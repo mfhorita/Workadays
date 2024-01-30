@@ -43,8 +43,7 @@ class UnitedStates(HolidayBase):
             if self.observed and date(year, JAN, 1).weekday() == SUN:
                 self[date(year, JAN, 1) + rd(days=+1)] = name + \
                     " (Observed)"
-            elif self.observed \
-                    and date(year, JAN, 1).weekday() == SAT:
+            elif self.observed and date(year, JAN, 1).weekday() == SAT:
                 # Add Dec 31st from the previous year without triggering
                 # the entire year to be added
                 expand = self.expand
@@ -68,8 +67,7 @@ class UnitedStates(HolidayBase):
         # Lee Jackson Day
         name = "Lee Jackson Day"
         if self.state == 'VA' and year >= 2000:
-            dt = date(year, JAN, 1) + rd(weekday=MO(+3)) + rd(
-                weekday=FR(-1))
+            dt = date(year, JAN, 1) + rd(weekday=MO(+3)) + rd(weekday=FR(-1))
             self[dt] = name
         elif self.state == 'VA' and year >= 1983:
             self[date(year, JAN, 1) + rd(weekday=MO(+3))] = name

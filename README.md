@@ -1,7 +1,8 @@
 ## Workadays:
 #### <h3>Pacote para calcular dias úteis, dias corridos e dias na base 360 (30/360).</h3>
-Há calendários de feriados do Brasil, Estados Unidos, Luxemburgo e Reino Unido. <p>
+Há calendários de feriados do Brasil, Estados Unidos, Luxemburgo, Reino Unido e Argentina. <p>
 Considera o novo feriado dos EUA, Juneteenth. Consulte: https://pt.wikipedia.org/wiki/Juneteenth <p>
+Considera o novo feriado nacional de 20/Nov (Conciência Negra)<p>
 
 
 ### Calendário de dias úteis:
