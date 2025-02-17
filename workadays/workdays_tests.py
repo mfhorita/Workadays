@@ -3,6 +3,7 @@
 import os
 
 import datetime as dt
+import pandas as pd
 from workadays import workdays as wd
 
 
@@ -59,6 +60,19 @@ def exec_tests():
     except AssertionError as ex:
         print('Teste dias corridos.. ERRO:..')
         print('..Resultado {0}. O resultado esperado era 1089!'.format(resp), ex)
+
+    # Verifica se é ano bissexto
+    ano = 2020
+    resp = wd.is_leap_year(ano)
+    try:
+        assert resp is True
+        print('Teste para verificar se ' + str(ano) + ' é ano bissexto.. OK!')
+    except AssertionError as ex:
+        print('Teste para verificar se ' + str(ano) + ' é ano bissexto.. ERRO:..')
+        print('ERRO: Resultado {0}. {1} não é ano bissexto!'.format(resp, ano), ex)
+
+    print('É ano bissexto? ', wd.is_leap_year(2020))
+    print(wd.days(pd.to_datetime('31/12/2019', dayfirst=True), pd.to_datetime('31/12/2020', dayfirst=True)))
 
     # Dias corridos, base 30U/360 (método americano)
     resp = wd.days360(d1, d2, method_eu=False)
@@ -147,16 +161,6 @@ def exec_tests():
     except AssertionError as ex:
         print('Teste para verificar se 24/12/2020 é dia útil.. ERRO:..')
         print('ERRO: Resultado {0}. {1} é dia útil!'.format(resp, date), ex)
-
-    # Verifica se é ano bissexto
-    ano = 2010
-    resp = wd.is_leap_year(ano)
-    try:
-        assert resp is False
-        print('Teste para verificar se 2010 é ano bissexto.. OK!')
-    except AssertionError as ex:
-        print('Teste para verificar se 2010 é ano bissexto.. ERRO:..')
-        print('ERRO: Resultado {0}. {1} não é ano bissexto!'.format(resp, ano), ex)
 
     os.system("pause")
     os.system("cls") or None
